@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery.validate.min.js"></script>
+
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="Scripts/respond.min.js"></script>
+
+    <link href="Content/Site.css" rel="stylesheet" />
+
+    <link href="Content/style.css" rel="stylesheet" />
+    
+</head>
+
+
+<div class="container big-class">
+    
+
+    <div class="col-lg-9 class_right">
+        <div class="col-lg-12">
+            <div class="col-lg-12" style="text-align:center; padding-bottom: 20px;">
+                <h1>Welcome to your school</h1>
+                <h3 id="noProd"></h3>
+            </div>
+
+
+            <div class="col-lg-12 box_textBtn styleImages" style="margin-bottom: 20px">
+                <div class=" col-lg-8 box_text">
+                    <h4>Add more classes</h4>
+                    <input type="text" id="newclass" style="margin-bottom:10px;" class="col-lg-4" />
+                    <button class="btn btn-primary col-lg-4 addmain class" id="btnAddProduct" onclick="javascript:Add(this);">Add Class</button>
+                    
+                </div>
+
+
+                <div class="col-lg-4 box_btn">
+                    
+                </div>
+
+
+            </div>
+        </div>
+
+
+        
+        <div class="col-lg-12  padd_class containerProducts" style="padding-bottom:10px">
+            
+        </div>
+        
+        <style>
+            .delete{
+                cursor: pointer;
+                padding-left:30px;
+            }
+            .divaddstudent{
+                display:block;
+                float:left;
+            }
+            .btn{
+                padding-top: 2px;
+                padding-bottom: 2px;
+                height:26px;
+            }
+            .oneclass{
+                margin-bottom:20px!important;
+            }
+        </style>
+
+        <script>
+           
+
+            
+
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    url: "api/HomeRest",
+                    dataType: "json",
+                    success: function (data) {
+
+                        $.each(data, function (i, theItem) {
+                            //alert(theItem.id);
+                            try {
+                                //alert(‘success add combo’);
+                                var s = "<div class='col-lg-12 styleImages' style='background-color: white'>";
+
+                                s =  s+ "<div class='oneclass' classid='" + theItem.id.toString() + "'>";
+                                s = s + "<h3>" + theItem.code.toString() + "<span class='delete class' tid='" + theItem.id + "' onclick='javascript:Delete(this);'>Delete</span>" + "</h3>";
+
+                                s = s + "<div class=''col-lg-12 divaddstudent'>" +
+                                         "<input class='col-lg-2 new newStudent'>" +
+                                         "<button class='btn btn-primary col-lg-2 add student' classid='" + theItem.id.toString() + "' onclick='javascript:Add(this);'>Add Student</button>" +
+                                         "</div><br style='clear:both;'/>";
+
+                                if (theItem.Students != null && theItem.Students.length > 0) {
+                                    //alert(theItem.Students.length);
+                                    for(var j=0; j<theItem.Students.length;j++){
+                                        s = s + "<div class='student' studentid='"+theItem.Students[j].name+"'>"+theItem.Students[j].name+
+                                               "<span class='delete student' tid='" + theItem.Students[j].id + "' onclick='javascript:Delete(this);'>Delete</span>" +
+                                            "</div>";
+                                    }
+                                }
+                                s= s + "</div>";
+
+                                s = s + "</div>";
+                                $(".containerProducts").append(s);
+
+                            }
+                            catch (error) {
+                                alert("error found");
+                            }
+
+                        });
+                        //EnsureCSBehaviour();
+
+                    },
+                    error: function (msg, url, line) {
+                        console.log("msg = " + msg + ", url = " + url + ", line = " + line);
+
+                    }
+                });
+
+                
+            });
+            
+
+
+            function Delete(obj) {
+                
+                    var id = $(obj).attr("tid");
+                    var t = "";
+                    if ($(obj).hasClass("class"))
+                        t = 0; // class
+                    else if ($(obj).hasClass("student"))
+                        t = 1; // class
+
+                    //alert(t + " - " + id);
+
+                   
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "api/HomeRest/" + id.toString(),
+                        dataType: "json",
+                        data: { tid: t, op: "delete" },
+                        success: function (data) {
+                            if (data == "") {
+                                if (t == 0)
+                                    $(obj).parent().parent().parent().hide();
+                                else if (t == 1) {
+                                    $(obj).parent().hide();
+                                }
+                            }
+                        },
+                        error: function (msg, url, line) {
+                                
+                            console.log("msg = " + msg + ", url = " + url + ", line = " + line);
+
+                        }
+                    });
+
+                
+            }
+
+
+            function Add(obj) {
+                var id = 0;
+                var t = "";
+                var name = "";
+                var cid = "";
+                if ($(obj).hasClass("class")) {
+                    t = 0; // class
+                    name = $(obj).parent().find("input").val();
+                    cid = "0";
+                }
+                else if ($(obj).hasClass("student")) {
+                    t = 1; // student
+                    name = $(obj).parent().find("input").val();
+                    cid = $(obj).attr("classid");
+                }
+                
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    url: "api/HomeRest/" + id.toString(),
+                    dataType: "json",
+                    data: { tid: t, op: "add", name: name, classid: cid },
+                    success: function (data) {
+                        //alert(data);
+                        var s = "";
+                        //alert(data+ " t="+t);
+                        if (data != "0") {
+                            if (t == 0) {
+
+                                var s = "<div class='col-lg-12 styleImages' style='background-color: white'>";
+
+                                s = s + "<div class='oneclass' classid='" + data + "'>";
+                                s = s + "<h3>" + name + "<span class='delete class' tid='" + data + "'  onclick='javascript:Delete(this);'>Delete</span>" + "</h3>";
+
+                                s = s + "<div class=''col-lg-12 divaddstudent'>" +
+                                         "<input class='col-lg-2 new newStudent'>" +
+                                         "<button class='btn btn-primary col-lg-2 add student' classid='" + data + "'  onclick='javascript:Add(this);'>Add Student</button>" +
+                                         "</div><br style='clear:both;'/>";
+
+                                s = s + "</div>";
+
+
+
+                                $(".containerProducts").append(s);                                
+                            }
+                            else if (t == 1) {
+                                $(".oneclass").each(function () {
+                                    var c = $(this).attr("classid");
+                                    if (c == cid) {
+                                        s = s + "<div class='student' studentid='" + data + "'>" + name +
+                                                  "<span class='delete student' tid='" + data + "'>Delete</span>" +
+                                               "</div>"
+
+                                        $(this).append(s);
+                                    }
+                                });
+                                
+                            }
+                            $(obj).parent().find("input").val("");
+
+
+                        }
+                    },
+                    error: function (msg, url, line) {
+                        console.log("msg = " + msg + ", url = " + url + ", line = " + line);
+
+                    }
+                });
+            }
+
+        </script>
+
+</html>

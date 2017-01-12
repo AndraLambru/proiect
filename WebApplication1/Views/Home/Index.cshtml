@@ -1,0 +1,72 @@
+﻿@model WebApplication1.Models.ModelBags
+@using BEntities;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<div class="container big-class">
+    <div class="col-lg-3 " style="border-right:2px solid  white; background-color:#b3b3b3">
+        <div class="col-lg-12">
+            <div class="col-lg-4"></div>
+            <div class=" col-lg-4">
+                <img src="~/Content/img/user.png" class="img-responsive img-circle">
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="col-lg-12">
+            <ul class="pad">
+                <li><a href="">My Shop</a></li>
+                <li><a href="">Inventory</a></li>
+                <li><a href="">Customers</a></li>
+                <li><a href="">Orders</a></li>
+                <li><a href="">Orders</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-9 class_right">
+        <div class="col-lg-12">
+            <div class="col-lg-12" style="text-align:center; padding-bottom: 20px;">
+                <h1>Welcome to your shop</h1>
+                <h3 id="noProd"></h3>
+            </div>
+
+
+            <div class="col-lg-12 box_textBtn styleImages" style="margin-bottom: 20px">
+                <div class=" col-lg-8 box_text">
+                <h4>Add more products</h4>
+                <h5>The more products you sell the easier it will be to quit your job</h5>
+            </div>
+
+
+                <div class="col-lg-4 box_btn">
+                    <button class="btn btn-primary col-lg-11 addProduct" id="btnAddProduct">Add Product</button>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        @if (Model != null && Model.listBags != null)
+        {
+            <div class="col-lg-12  padd_class containerProducts" style="padding-bottom:10px">
+                @foreach (Bag b in Model.listBags)
+                {
+                    if (b.BigPic != null)
+                    {
+                        Html.RenderPartial("_Bag", b);
+                    }
+                }
+            </div>
+        }
+
+@{Html.RenderPartial("_SeeMoreModal");}
+@{Html.RenderPartial("_AddProduct");}
+
+

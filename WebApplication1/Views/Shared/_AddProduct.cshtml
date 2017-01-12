@@ -1,0 +1,70 @@
+﻿<!-- The Modal- ADD BUTTON -->
+<div id="product-add-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="View Product" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content -->
+        <div class="modal-content" style="margin-top:50px">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="alert alert-danger" role="alert" style="display:none">
+                    <strong>Error!</strong><span id="messageError">yyuyuyuy</span>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="col-lg-3 addProduct">
+                        <div class="col-lg-12 addgeneric">
+                            <div class="added"> </div>
+                            <div class="toAdd" style="position:relative">
+                                <img src="~/Content/img/mountains.png" id="addpoza" class="img-responsive left_popimages " />
+                                <img src="~/Content/img/plus.png" class="addpoza" width="25" style="position:absolute; top:10px; right:13px;" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-5 addbig_picture">
+                        <div class="col-lg-12">
+                            <img id="addbigBagImage" src="~/Content/img/mountains.png" class="img-responsive addbigBagImage" />
+                            <img src="~/Content/img/plus.png" class="addpozaMare" width="25" style="position:absolute; top:10px; right:25px;z-index:1000; cursor:pointer" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="col-lg-12 right-col">
+                            <div id="product-desc" class="col-lg-8" style="margin-left: -15px">
+                                <span class="addtitluprod">Product Name</span>
+                                <input type="text" class="addTitle" id="addTitle" style="width: 100%;" />
+
+                            </div>
+
+                            <div class="col-lg-13" id="addpretprod" style="position: relative;">
+                                <span class="addpretprod">Price</span>
+                                <input type="text" class="addPrice" id="addPrice" style="position: absolute; top:20px; width: 40%;right:0px" />
+                            </div>
+
+                            <br />
+                            <div class="adddescprod" style="display:block; clear:both;">
+                                <span>Description</span>
+                                <textarea name="TextArea" class="addDesc" id="addDesc" style="min-width: 100%; min-height: 100px;max-height: 300px; margin-bottom: 20px;"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="addclassBuy">
+                            <button class="btn btn-primary col-lg-10 addclassBuy" id="btnAddNewProduct">Add New Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Modal body -->
+        </div>
+    </div>
+</div>
+
+<input type="file" id="idFile" style="display:none" accept="image/*" />
+

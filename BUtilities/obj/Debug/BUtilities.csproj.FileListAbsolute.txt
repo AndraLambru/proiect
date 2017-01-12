@@ -1,0 +1,15 @@
+C:\Users\Andra\Desktop\newShop\test\WebApplication1\BUtilities\bin\Debug\BUtilities.dll
+C:\Users\Andra\Desktop\newShop\test\WebApplication1\BUtilities\bin\Debug\BUtilities.pdb
+C:\Users\Andra\Desktop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.dll
+C:\Users\Andra\Desktop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.pdb
+E:\Andra\N29\newShop\newShop\test\WebApplication1\BUtilities\bin\Debug\BUtilities.dll
+E:\Andra\N29\newShop\newShop\test\WebApplication1\BUtilities\bin\Debug\BUtilities.pdb
+E:\Andra\N29\newShop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.dll
+E:\Andra\N29\newShop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.pdb
+E:\Andra\N29\newShop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.csprojResolveAssemblyReference.cache
+C:\Users\Andra\Desktop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.csprojResolveAssemblyReference.cache
+E:\Andra\20161229\newShop\newShop\test\WebApplication1\BUtilities\bin\Debug\BUtilities.dll
+E:\Andra\20161229\newShop\newShop\test\WebApplication1\BUtilities\bin\Debug\BUtilities.pdb
+E:\Andra\20161229\newShop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.dll
+E:\Andra\20161229\newShop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.pdb
+E:\Andra\20161229\newShop\newShop\test\WebApplication1\BUtilities\obj\Debug\BUtilities.csprojResolveAssemblyReference.cache
